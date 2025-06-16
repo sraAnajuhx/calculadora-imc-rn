@@ -32,7 +32,7 @@ export default function Home() {
     setImc(formulaimc.toFixed(1));
     setResposta(true);
 
-    if (formulaimc < 18.5) {
+    if (imc < 18.5) {
       setCategoria("Abaixo do peso");
       setCorDeFundoResposta("#3b82f6");
       setCorDeFundoCategoria("#629bf8");
@@ -113,6 +113,7 @@ export default function Home() {
                 placeholder="kg"
               ></TextInput>
             </View>
+            <Text style={styles.autor}>Feito por Ana julia Oliveira</Text>
             <TouchableOpacity
               onPress={() => calcularImc(Number(altura), Number(peso))}
               style={styles.botao}
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
 
   subtitulo: {
     textAlign: "center",
-    color: "gray",
+    color: "Blue",
     fontWeight: "semibold",
     lineHeight: 20,
   },
@@ -185,14 +186,14 @@ const styles = StyleSheet.create({
   campo: {
     height: 50,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#4169E1",
     paddingHorizontal: 10,
     borderRadius: 4,
     width: "100%",
   },
 
   botao: {
-    backgroundColor: "#2563EB",
+    backgroundColor: "#00BFFF",
     paddingVertical: 16,
     paddingHorizontal: 32,
     borderRadius: 10,
@@ -243,5 +244,13 @@ const styles = StyleSheet.create({
     marginTop: 12,
     textAlign: "center",
     fontSize: 18,
+
   },
+
+autor: {
+  textAlign: "center", // alinha texto no centro
+color: "#4169E1",
+}
+
+
 });
