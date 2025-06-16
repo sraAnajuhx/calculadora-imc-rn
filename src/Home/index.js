@@ -1,12 +1,14 @@
-import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import {
+  ImageBackground,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
+// chamando a imagem
+import capa from "../../assets/capa.jpg";
 
 export default function Home() {
   const [resposta, setResposta] = useState(false);
@@ -46,69 +48,81 @@ export default function Home() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.caixa}>
-        <Text style={styles.titulo}>Calculadora de IMC</Text>
+    <ImageBackground
+      style={styles.capaDeFundo}
+      resizeMode="cover"
+      source={capa}
+    >
+      <View style={styles.container}>
+        <View style={styles.caixa}>
+          <Text style={styles.titulo}>Calculadora de IMC</Text>
 
-        <Text style={styles.subtitulo}>
-          Insira seus dados para calcular seu Índice de Massa Corporal. Gênero
-        </Text>
+          <Text style={styles.subtitulo}>
+            Insira seus dados para calcular seu Índice de Massa Corporal. Gênero
+          </Text>
 
-        <View style={styles.formulario}>
-          <View>
-            <Text>Altura</Text>
-            <TextInput
-              value={altura}
-              onChangeText={setAltura}
-              style={styles.campo}
-              placeholder="cm"
-            ></TextInput>
-          </View>
-          <View>
-            <Text>Peso</Text>
-            <TextInput
-              value={peso}
-              onChangeText={setPeso}
-              style={styles.campo}
-              placeholder="kg"
-            ></TextInput>
-          </View>
-          <TouchableOpacity
-            onPress={() => calcularImc(Number(altura), Number(peso))}
-            style={styles.botao}
-          >
-            <Text style={styles.texto}>Calcular IMC</Text>
-          </TouchableOpacity>
-        </View>
-
-        {resposta && (
-          <View
-            style={[styles.resposta, { backgroundColor: corDeFundoResposta }]}
-          >
-            <Text style={styles.tituloImc}>Seu IMC é: </Text>
-            <Text style={styles.calculo}>{imc}</Text>
-            <Text
-              style={[
-                styles.categoria,
-                { backgroundColor: corDeFundoCategoria },
-              ]}
+          <View style={styles.formulario}>
+            <View>
+              <Text>Altura</Text>
+              <TextInput
+                value={altura}
+                onChangeText={setAltura}
+                style={styles.campo}
+                placeholder="cm"
+              ></TextInput>
+            </View>
+            <View>
+              <Text>Peso</Text>
+              <TextInput
+                value={peso}
+                onChangeText={setPeso}
+                style={styles.campo}
+                placeholder="kg"
+              ></TextInput>
+            </View>
+            <TouchableOpacity
+              onPress={() => calcularImc(Number(altura), Number(peso))}
+              style={styles.botao}
             >
-              {categoria}
-            </Text>
+              <Text style={styles.texto}>Calcular IMC</Text>
+            </TouchableOpacity>
           </View>
-        )}
-        <Text style={styles.mensagem}>{mensagem}</Text>
+
+          {resposta && (
+            <View
+              style={[styles.resposta, { backgroundColor: corDeFundoResposta }]}
+            >
+              <Text style={styles.tituloImc}>Seu IMC é: </Text>
+              <Text style={styles.calculo}>{imc}</Text>
+              <Text
+                style={[
+                  styles.categoria,
+                  { backgroundColor: corDeFundoCategoria },
+                ]}
+              >
+                {categoria}
+              </Text>
+            </View>
+          )}
+          <Text style={styles.mensagem}>{mensagem}</Text>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  capaDeFundo: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+  },
+
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f1f1f1",
     padding: 20,
   },
 
